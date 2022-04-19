@@ -1,39 +1,50 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include "stdio.h"
+#include "stdlib.h"
+#include "stdbool.h"
+
+struct request
+{
+    int request_track_number;
+    bool visited;
+};
+
 int main()
 {
-    int RQ[100], i, n, TotalHeadMoment = 0, initial, count = 0;
-    printf("Enter the number of Requests\n");
-    scanf("%d", &n);
-    printf("Enter the Requests sequence\n");
-    for (i = 0; i < n; i++)
-        scanf("%d", &RQ[i]);
-    printf("Enter initial head position\n");
-    scanf("%d", &initial);
-
-    // logic for sstf disk scheduling
-
-    /* loop will execute until all process is completed*/
-    while (count != n)
+    int i, no_of_requests, initial_head, limit, j, choice, previous_head;
+    printf("Enter the number of requests: ");
+    scanf("%d", &no_of_requests);
+    struct request req[no_of_requests];
+    printf("Enter the requests: ");
+    for (i = 0; i < no_of_requests; ++i)
     {
-        int min = 1000, d, index;
-        for (i = 0; i < n; i++)
+        scanf("%d", &req[i].request_track_number);
+        req[i].visited = false;
+    }
+    printf("Enter initial position of R/W head: ");
+    scanf("%d", &initial_head);
+
+    int seek_time = 0;
+    printf("%d -> ", initial_head);
+    int n = no_of_requests;
+    while (n)
+    {
+        int min = 1e9;
+        int min_track_number, position;
+        for (i = 0; i < no_of_requests; i++)
         {
-            d = abs(RQ[i] - initial);
-            if (min > d)
+            if (abs(initial_head - req[i].request_track_number) < min && req[i].visited == false)
             {
-                min = d;
-                index = i;
+                min = abs(initial_head - req[i].request_track_number);
+                min_track_number = req[i].request_track_number;
+                position = i;
             }
         }
-        TotalHeadMoment = TotalHeadMoment + min;
-        initial = RQ[index];
-        // 1000 is for max
-        // you can use any number
-        RQ[index] = 1000;
-        count++;
+        initial_head = req[position].request_track_number;
+        req[position].visited = true;
+        printf("%d ->", min_track_number);
+        seek_time += min;
+        n--;
     }
 
-    printf("Total head movement is %d", TotalHeadMoment);
-    return 0;
+    printf("\nSeek Time: %d\n", seek_time);
 }

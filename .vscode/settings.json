@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "ostream": "c",
+        "array": "c",
+        "bitset": "c",
+        "initializer_list": "c",
+        "regex": "c",
+        "utility": "c",
+        "valarray": "c"
+    }
+}
