@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <conio.h>
 int main()
 {
     int bt[20], p[20], wt[20], tat[20], i, j, n, total = 0, pos, temp;
@@ -54,5 +53,4 @@ int main()
     avg_tat = (float)total / n; //average turnaround time
     printf("\n\nAverage Waiting Time=%f", avg_wt);
     printf("\nAverage Turnaround Time=%f\n", avg_tat);
-    getch();
 }

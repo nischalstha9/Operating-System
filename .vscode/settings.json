@@ -1,11 +1,17 @@
 {
     "files.associations": {
+        "**/*.html": "html",
+        "**/templates/**/*.html": "django-html",
+        "**/templates/**/*": "django-txt",
+        "**/requirements{/**,*}.{txt,in}": "pip-requirements",
+        "*.html": "django-html",
         "ostream": "c",
         "array": "c",
         "bitset": "c",
         "initializer_list": "c",
         "regex": "c",
         "utility": "c",
-        "valarray": "c"
+        "valarray": "c",
+        "math.h": "c"
     }
 }

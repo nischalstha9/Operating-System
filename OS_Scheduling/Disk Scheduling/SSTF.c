@@ -1,14 +1,13 @@
-#include<stdio.h>//This header file is included for the standard input and output functions like printf and scanf
+#include <stdio.h>
+#include <math.h>
+
 void main()
 {
-	system("color f0");
-	int a[100]; //An integer array to store the disk requests
-	int b[100]; //An integer array to store the initial disk request sequence
+	int a[100];			   //An integer array to store the disk requests
+	int b[100];			   //An integer array to store the initial disk request sequence
 	int SeekDistance[100]; //An Array to store individual Seek distances
 	int distance, num_requests, i, j, temp, shortest_distance;
 	int swap = 0, tot_distance = 0, z = 0;
-	
-
 
 	//Fetch # requests to be processed
 	printf("\nEnter the number of requests.\n");
@@ -17,7 +16,7 @@ void main()
 		scanf("%d", &num_requests);
 		if (num_requests <= 0 || num_requests > 100)
 			printf("Please enter a proper number of requests!!!\n");
-	} while (num_requests <= 0 || num_requests>100);
+	} while (num_requests <= 0 || num_requests > 100);
 
 	//Fetch initial Head Position
 	printf("Enter the initial head position:\n");
@@ -37,7 +36,7 @@ void main()
 	}
 
 	//Identify the next request with the shortest distance
-	for (i = 0; i<num_requests; i++)
+	for (i = 0; i < num_requests; i++)
 	{
 		shortest_distance = abs(a[i] - a[i + 1]);
 
@@ -59,19 +58,16 @@ void main()
 		temp = a[i + 1];
 		a[i + 1] = a[swap];
 		a[swap] = temp;
-		
 	}
-	
 
 	printf("S.No\t Original Requests\t   Serviced Order \t   Individual Seek Length\n");
 	printf("------------------------------------------------------------------------------------------------\n");
 
 	for (i = 0; i < num_requests; i++)
 	{
-		printf("%d\t\t %d\t\t\t %d\t\t\t %d\n", i + 1, b[i+1], a[i+1], SeekDistance[i]);
+		printf("%d\t\t %d\t\t\t %d\t\t\t %d\n", i + 1, b[i + 1], a[i + 1], SeekDistance[i]);
 		//printf("\n%d", b[i]);
 	}
 	printf("\nTotal Head Movement:%d", tot_distance);
 	printf("\n");
-
 }
